@@ -1,0 +1,15 @@
+dotnet --info // to display all details about my sdk
+dotnet -h //  to view all available command
+dotnet new --list//to view all type of project that can be created 
+dotnet new sln  // to create new sln file
+dotnet new webapi -o API //create a webapi project in API folder
+dotnet sln add API//add webapi to solution file 
+install microsoft.entityframeworkcore.sqlite
+install dotnet add package Microsoft.EntityFrameworkCore.Tools --version 5.0.0
+install dotnet add package Microsoft.EntityFrameworkCore.Design --version 5.0.0
+install from dotnet-ef from nuget website to create the database (it's a global installation
+ignore if already installed)
+dotnet ef migrations add InitialCreate -o Data/Migrations
+dotnet ef database update // create database from migration
+dotnet dev-certs https --trust // trust the cerificate
+dotnet new gitignore // create gitignore file
