@@ -1,0 +1,5 @@
+npm install -g @angular/cli@12
+ng new client --strict false // false to avoid any warning
+ng add ngx-bootstrap@7.1.0 //install bootstrap
+npm install font-awesome
+//we have configured https in angular.json
