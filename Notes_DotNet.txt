@@ -13,3 +13,8 @@ dotnet ef migrations add InitialCreate -o Data/Migrations
 dotnet ef database update // create database from migration
 dotnet dev-certs https --trust // trust the cerificate
 dotnet new gitignore // create gitignore file
+//generate launch.json for debug
+go to command pallate => Generate asset to build and debug
+dotnet ef database drop // to drop a database
+system.identitymodel.Token.jwt // install it from nuget package manager
+install Microsoft.AspNetCore.Authentication.JwtBearer via nuget to add authentication
