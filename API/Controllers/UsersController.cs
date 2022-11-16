@@ -18,7 +18,7 @@ namespace API.Controllers
             _context = context;
         }
 
-        [Authorize]
+        // [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
