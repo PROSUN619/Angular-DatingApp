@@ -4,3 +4,4 @@ ng add ngx-bootstrap@7.1.0 //install bootstrap
 npm install font-awesome
 //we have configured https in angular.json
 ng g c nav --skip-tests
+npm install ngx-toaster
