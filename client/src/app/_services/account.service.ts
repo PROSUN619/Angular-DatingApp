@@ -2,13 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { User } from '../_models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-  baseURL = 'https://localhost:5001/api/';
+  //baseURL = 'https://localhost:5001/api/';
+  baseURL = environment.apiUrl;
   private currentUserSource = new ReplaySubject<User>(1);
   //above code going to create buffer of size 1 which will emit the user data
   currentUser$ = this.currentUserSource.asObservable();
@@ -51,6 +53,4 @@ export class AccountService {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
   }
-
-
 }
