@@ -7,6 +7,7 @@ using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Extensions;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -29,12 +30,20 @@ namespace API.Controllers
         }
 
         // [Authorize]
-        [HttpGet()]
-        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers([FromQuery] UserParams userParams)
         {
-            var users = await _userRepository.GetUsersAsync();
-            var userToReturn = _mapper.Map<IEnumerable<MemberDto>>(users);
-            return Ok(userToReturn);
+            var currentUser = await _userRepository.GetUserByUserNameAsync(User.GetUserName());
+            userParams.CurrentUserName = currentUser.UserName;
+
+            if (string.IsNullOrEmpty(userParams.Gender))
+                userParams.Gender = currentUser.Gender == "male" ? "female" : "male";
+
+            var users = await _userRepository.GetMembersAsync(userParams);
+            Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage, users.PageSize,users.TotalCount,users.TotalPages));
+            //var userToReturn = _mapper.Map<IEnumerable<MemberDto>>(users);
+            //return Ok(userToReturn);
+            return Ok(users);
 
             //here we have to wrap the response within OK. only for list case
         }
