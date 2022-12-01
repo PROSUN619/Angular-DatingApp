@@ -85,7 +85,7 @@ namespace API.Data
             }
 
             return await PagedList<MemberDto>.CreateAsync(query.ProjectTo<MemberDto>(_mapper.ConfigurationProvider).AsNoTracking(),
-                                                         userParams.PageNUmber, userParams.PageSize);
+                                                         userParams.PageNumber, userParams.PageSize);
         }
 
         public async Task<bool> SaveAllAsync()

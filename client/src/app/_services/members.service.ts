@@ -35,22 +35,22 @@ export class MembersService {
         }
       }
     });
-   }
+  }
 
-   getUserParams(){
+  getUserParams() {
     return this.userParams;
-   }
+  }
 
-   setUserParams(params: UserParams){
+  setUserParams(params: UserParams) {
     this.userParams = params;
-   }
+  }
 
-   resetUserParams(){
-    if (this.user){
+  resetUserParams() {
+    if (this.user) {
       this.userParams = new UserParams(this.user);
       return this.userParams;
     }
-   }
+  }
 
   // getMembers() {
   //   if (this.members.length > 0) return of(this.members);
@@ -113,8 +113,8 @@ export class MembersService {
   //please refer video no 167 if not understand
   getMember(username: string) {
     const member = [...this.memberCache.values()]
-    .reduce((arr,elm) => arr.concat(elm.result), [])
-    .find((member:Member) => member.userName === username);
+      .reduce((arr, elm) => arr.concat(elm.result), [])
+      .find((member: Member) => member.userName === username);
 
     if (member) return of(member);
 
@@ -136,6 +136,17 @@ export class MembersService {
 
   setMainPhoto(photoId: number) {
     return this.http.put(this.baseUrl + 'users/set-main-photo/' + photoId, {});
+  }
+
+  addLike(username: string) {
+    return this.http.post(this.baseUrl + 'likes/' + username, {});
+  }
+
+  getLikes(predicate: string, pageNumber : number, pageSize : number) {
+    let params = this.getPaginationHeaders(pageNumber, pageSize);
+    params = params.append('predicate', predicate);
+
+    return this.getPaginatedResult<Member[]>(this.baseUrl + 'likes', params);
   }
 
 }

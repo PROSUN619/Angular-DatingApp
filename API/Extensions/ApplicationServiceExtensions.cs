@@ -23,7 +23,8 @@ namespace API.Extensions
                 options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
             });    
             services.AddScoped<LogUserActivity>();//user this acttion in the base api controller to work for same
-
+            services.AddScoped<ILikesRepository, LikesRepository>();
+            
             return services;
         }
     }
