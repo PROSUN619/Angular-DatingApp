@@ -24,6 +24,7 @@ namespace API.Extensions
             });    
             services.AddScoped<LogUserActivity>();//user this acttion in the base api controller to work for same
             services.AddScoped<ILikesRepository, LikesRepository>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
             
             return services;
         }
