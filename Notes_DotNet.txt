@@ -18,3 +18,4 @@ go to command pallate => Generate asset to build and debug
 dotnet ef database drop // to drop a database
 system.identitymodel.Token.jwt // install it from nuget package manager
 install Microsoft.AspNetCore.Authentication.JwtBearer via nuget to add authentication
+install Microsoft.AspNetCore.identity.EntityFrameworkCore // to work with identity
