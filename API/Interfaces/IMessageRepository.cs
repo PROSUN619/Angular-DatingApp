@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
 using API.Helpers;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace API.Interfaces
 {
@@ -16,6 +17,11 @@ namespace API.Interfaces
         Task<PagedList<MessageDto>> GetMessageForUser(MessageParams messageParams);
         Task<IEnumerable<MessageDto>> GetMessageThread(string currentUserName, string recipienUserName);
         Task<bool> SaveAllAsync();
+        void AddGroup(Group group);
+        void RemoveConnection(Connection connection);
+        Task<Connection> GetConnection(string connectionId);
+        Task<Group> GetMessageGroup(string groupName); 
+        Task<Group> GetGroupForConnection(string connectionId);
     }
 
 }
