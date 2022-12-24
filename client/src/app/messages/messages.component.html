@@ -28,7 +28,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let message of messages"
-            routerLink="{{container === 'Outbox' ? '/members/' + message.recipientname : message.senderUsername}}"
+            routerLink="{{container === 'Outbox' ? '/members/' + message.recipientUserName : '/members/' + message.senderUserName}}"
             [queryParams] = "{tab: 'Messages'}"
             >  
                 <td class="align-middle">{{message.content}}</td>

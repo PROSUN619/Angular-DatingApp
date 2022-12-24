@@ -17,17 +17,18 @@ namespace API.Extensions
         {
             services.Configure<CloudiniarySettings>(configuration.GetSection("CloudinarySettings"));
             services.AddScoped<ITokenService,TokenService>();
-            services.AddScoped<IUserRepository,UserRepository>();
+            // services.AddScoped<IUserRepository,UserRepository>();
             services.AddScoped<IPhotoService,PhotoService>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(options => {
                 options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
             });    
             services.AddScoped<LogUserActivity>();//user this acttion in the base api controller to work for same
-            services.AddScoped<ILikesRepository, LikesRepository>();
-            services.AddScoped<IMessageRepository, MessageRepository>();
+            // services.AddScoped<ILikesRepository, LikesRepository>();
+            // services.AddScoped<IMessageRepository, MessageRepository>();
             services.AddSignalR();
             services.AddSingleton<PresenceTracker>();
+            services.AddScoped<IUnitOfWork,UnitOfWork>();
             
             return services;
         }

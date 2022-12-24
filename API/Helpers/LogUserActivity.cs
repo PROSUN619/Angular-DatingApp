@@ -21,10 +21,10 @@ namespace API.Helpers
 
             var userId = resultContext.HttpContext.User.GetUserId();
 
-            var repo = resultContext.HttpContext.RequestServices.GetRequiredService<IUserRepository>();
-            var user = await repo.GetUserByIdWithoutPhotosAsync(Convert.ToInt32(userId));
+            var unitOfWork = resultContext.HttpContext.RequestServices.GetRequiredService<IUnitOfWork>();
+            var user = await unitOfWork.UserRepository.GetUserByIdWithoutPhotosAsync(Convert.ToInt32(userId));
             user.LastActive = DateTime.Now;
-            await repo.SaveAllAsync();
+            await unitOfWork.CompleteAsync();
             //use this in the middleware to get the functionality worked
 
            // throw new NotImplementedException();
